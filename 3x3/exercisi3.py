@@ -1,3 +1,4 @@
+
 print("Erik Jimenez")
 
 def separador(exercici):
