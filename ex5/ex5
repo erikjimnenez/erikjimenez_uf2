@@ -1,0 +1,204 @@
+print("Erik Jimnez Zarzoso")
+
+
+def separador(exercici):
+    print("#" * 25)
+    print("#")
+    print("# Exercici " + str(exercici))
+    print("#")
+    print("#" * 25)
+
+separador(5.1)
+
+import time
+
+
+for i in range(1, 6):
+    print(f"{i} Mississippi")
+    time.sleep(1)  
+print("¡Listos o no, ahí voy!")
+
+
+
+def separador(exercici):
+    print("#" * 25)
+    print("#")
+    print("# Exercici " + str(exercici))
+    print("#")
+    print("#" * 25)
+
+separador(5.2)
+
+# Bucle while para pedir palabras al usuario
+while True:
+    palabra = input("Ingresa una palabra (o 'chupacabra' para salir): ")
+    
+    # Verificar si la palabra es la palabra de salida secreta
+    if palabra.lower() == "chupacabra":
+        print("¡Has dejado el bucle con éxito!")
+        break
+
+def separador(exercici):
+    print("#" * 25)
+    print("#")
+    print("# Exercici " + str(exercici))
+    print("#")
+    print("#" * 25)
+
+separador(5.3)
+
+
+user_word = input("Ingresa una palabra: ")
+
+
+user_word = user_word.upper()
+
+for letra in user_word:
+    
+    if letra == 'A' or letra == 'E' or letra == 'I' or letra == 'O' or letra == 'U':
+        continue
+    else:
+        #
+        print(letra)
+
+
+def separador(exercici):
+    print("#" * 25)
+    print("#")
+    print("# Exercici " + str(exercici))
+    print("#")
+    print("#" * 25)
+
+separador(5.4)
+
+user_word = input("Ingresa una palabra: ")
+
+user_word = user_word.upper()
+
+word_without_vowels = ""
+
+for letra in user_word:
+   
+    if letra in ['A', 'E', 'I', 'O', 'U']:
+        continue
+    else:
+       
+        word_without_vowels += letra
+
+
+print("Palabra sin vocales:", word_without_vowels)
+
+def separador(exercici):
+    print("#" * 25)
+    print("#")
+    print("# Exercici " + str(exercici))
+    print("#")
+    print("#" * 25)
+
+separador(5.5)
+
+def calcular_capital_inversion(inversion, tasa_interes, anos):
+    for ano in range(1, anos + 1):
+        inversion *= 1 + tasa_interes
+        print(f'Año {ano}: Capital obtenido = {inversion:.2f}')
+
+# Solicitar entrada al usuario
+inversion = float(input("Ingrese la cantidad a invertir: "))
+tasa_interes = float(input("Ingrese la tasa de interés anual (en porcentaje): ")) / 100
+anos = int(input("Ingrese el número de años de la inversión: "))
+
+# Llamar a la función para calcular y mostrar el capital obtenido cada año
+calcular_capital_inversion(inversion, tasa_interes, anos)
+
+def separador(exercici):
+    print("#" * 25)
+    print("#")
+    print("# Exercici " + str(exercici))
+    print("#")
+    print("#" * 25)
+
+separador(5.7)
+
+print("asterizcos)")
+
+def imprimir_triangulo_asteriscos(altura):
+    for i in range(1, altura + 1):
+        print('*' * i)
+
+# Solicitar entrada al usuario
+altura_asteriscos = int(input("Ingrese la altura del triángulo (número entero): "))
+
+# Llamar a la función para imprimir el triángulo de asteriscos
+imprimir_triangulo_asteriscos(altura_asteriscos)
+
+print("Numeros")
+
+def imprimir_triangulo_numeros(altura):
+    for i in range(1, altura + 1):
+        for j in range(2 * i - 1, 0, -2):
+            print(j, end=' ')
+        print()
+
+
+def separador(exercici):
+    print("#" * 25)
+    print("#")
+    print("# Exercici " + str(exercici))
+    print("#")
+    print("#" * 25)
+
+separador(5.8)
+# Solicitar al usuario una palabra
+palabra = input("Introduce una palabra: ")
+
+# Mostrar las letras de la palabra empezando por la última
+for letra in reversed(palabra):
+    print(letra)
+
+
+def separador(exercici):
+    print("#" * 25)
+    print("#")
+    print("# Exercici " + str(exercici))
+    print("#")
+    print("#" * 25)
+
+separador(5.9)
+
+# Solicitar al usuario una frase
+frase = input("Introduce una frase: ")
+
+# Solicitar al usuario una letra
+letra = input("Introduce una letra: ")
+
+# Contar el número de veces que aparece la letra en la frase
+contador = 0
+for caracter in frase:
+    if caracter == letra:
+        contador += 1
+
+# Mostrar el resultado
+print(f"La letra '{letra}' aparece {contador} veces en la frase.")
+
+def separador(exercici):
+    print("#" * 25)
+    print("#")
+    print("# Exercici " + str(exercici))
+    print("#")
+    print("#" * 25)
+
+separador(5.10)
+
+blocks = int(input("Ingresa el número de bloques: "))
+
+height = 0  # Inicializamos la altura de la pirámide
+current_layer_blocks = 1  # Inicializamos la cantidad de bloques en la capa actual
+remaining_blocks = blocks  # Inicializamos la cantidad de bloques restantes
+
+# Construir la pirámide
+while remaining_blocks >= current_layer_blocks:
+    height += 1
+    remaining_blocks -= current_layer_blocks
+    current_layer_blocks += 1
+
+print("La altura de la pirámide es:", height)
