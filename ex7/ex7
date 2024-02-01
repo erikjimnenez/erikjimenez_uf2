@@ -1,0 +1,195 @@
+print("Erik Jimnez Zarzoso")
+
+
+
+def separador(exercici):
+    print("#" * 25)
+    print("#")
+    print("# Exercici " + str(exercici))
+    print("#")
+    print("#" * 25)
+
+separador(7.1)
+def is_year_leap(year):
+    
+    return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+
+
+test_data = [1900, 2000, 2016, 1987]
+test_results = [False, True, True, False]
+
+for i in range(len(test_data)):
+    yr = test_data[i]
+    print(yr, "->", end="")
+    result = is_year_leap(yr)
+    if result == test_results[i]:
+        print("OK")
+    else:
+        print("Fallido")
+
+
+
+separador(7.2)
+
+def is_year_leap(year):
+    # Función del LABORATORIO 7.1 para determinar si un año es bisiesto o no.
+    return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+
+def days_in_month(year, month):
+    # Lista con el número de días por mes
+    days_per_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+    # Verificar si el año y el mes son válidos
+    if not (1 <= month <= 12) or not isinstance(year, int) or not isinstance(month, int):
+        return None
+
+    # Verificar si el año es bisiesto y ajustar los días de febrero
+    if month == 2:
+        if is_year_leap(year):
+            return 29
+        else:
+            return 28
+
+    return days_per_month[month - 1]
+
+# Código de prueba ampliado
+test_years = [1900, 2000, 2016, 1987, 2020]
+test_months = [2, 2, 1, 11, 13]
+test_results = [28, 29, 31, 30, None]
+
+for i in range(len(test_years)):
+    yr = test_years[i]
+    mo = test_months[i]
+    print(yr, mo, "->", end="")
+    result = days_in_month(yr, mo)
+    if result == test_results[i]:
+        print("OK")
+    else:
+        print("Fallido")
+
+separador(7.4)
+import math
+
+def quadrat(num):
+    
+    return num ** 2
+
+def arrel(num):
+   
+    return math.sqrt(num)
+
+def pitagoras(a, b):
+    
+    c_cuadrat = quadrat(a) + quadrat(b)
+    c = arrel(c_cuadrat)
+    return c
+
+
+catet_a = 3
+catet_b = 4
+
+hipotenusa = pitagoras(catet_a, catet_b)
+print(f"La hipotenusa es: {hipotenusa}")
+
+
+separador(7.42)
+
+def is_prime(num):
+
+    if num > 1:
+        
+        for i in range(2, int(num**0.5) + 1):
+            if num % i == 0:
+                return False  
+        return True 
+    else:
+        return False  
+
+
+for i in range(1, 20):
+    if is_prime(i + 1):
+        print(i + 1, end=" ")
+print()
+
+
+separador(7.7)
+
+import math
+
+def area_circulo(radio):
+    
+    return math.pi * radio**2
+
+def volumen_cilindro(radio, altura):
+   
+    area_base = area_circulo(radio)
+    volumen = area_base * altura
+    return volumen
+
+# Ejemplo
+radio_circulo = 3
+altura_cilindro = 5
+
+area_del_circulo = area_circulo(radio_circulo)
+volumen_del_cilindro = volumen_cilindro(radio_circulo, altura_cilindro)
+
+print(f"Área del círculo: {area_del_circulo}")
+print(f"Volumen del cilindro: {volumen_del_cilindro}")
+
+separador(7.8)
+
+def decimal_a_binario(decimal):
+   
+    if decimal < 0:
+        return "No se admite números negativos en binario"
+    elif decimal == 0:
+        return "0b0"
+    else:
+        binario = bin(decimal)
+        return binario
+
+def binario_a_decimal(binario):
+    
+    try:
+        decimal = int(binario, 2)
+        return decimal
+    except ValueError:
+        return "Entrada no válida para binario"
+
+# Ejemplo 
+numero_decimal = 25
+numero_binario = "11001"
+
+resultado_binario = decimal_a_binario(numero_decimal)
+resultado_decimal = binario_a_decimal(numero_binario)
+
+print(f"{numero_decimal} en binario: {resultado_binario}")
+print(f"{numero_binario} en decimal: {resultado_decimal}")
+
+
+
+separador(7.9)
+
+def es_vocal(letra):
+   
+    vocales = "aeiouAEIOU"
+    return letra in vocales
+
+def treu_vocals(palabra):
+   
+    palabra_sin_vocales = "".join(letra for letra in palabra if not es_vocal(letra))
+    return palabra_sin_vocales
+
+def treu_consonants(palabra):
+
+    palabra_sin_consonantes = "".join(letra for letra in palabra if es_vocal(letra))
+    return palabra_sin_consonantes
+
+# Ejemplo 
+palabra_original = "Hola a todes"
+resultado_sin_vocales = treu_vocals(palabra_original)
+resultado_sin_consonantes = treu_consonants(palabra_original)
+
+print(f"Palabra original: {palabra_original}")
+print(f"Palabra sin vocales: {resultado_sin_vocales}")
+print(f"Palabra solo con vocales: {resultado_sin_consonantes}")

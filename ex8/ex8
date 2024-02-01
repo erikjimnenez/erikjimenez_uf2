@@ -1,0 +1,192 @@
+print("Erik Jimnez Zarzoso")
+
+
+
+def separador(exercici):
+    print("#" * 25)
+    print("#")
+    print("# Exercici " + str(exercici))
+    print("#")
+    print("#" * 25)
+
+
+def generar_tabla_multiplicar():
+    try:
+        numero = int(input("Introduce un número entero entre 1 y 10: "))
+        if numero < 1 or numero > 10:
+            print("Número fuera del rango permitido.")
+            return
+        
+        with open(f"tabla-{numero}.txt", "w") as file:
+            for i in range(1, 11):
+                file.write(f"{numero} x {i} = {numero * i}\n")
+        
+        print(f"Tabla de multiplicar del {numero} generada en tabla-{numero}.txt")
+    except ValueError:
+        print("Debe ingresar un número entero válido.")
+
+
+# Ejercicio 8.2
+def mostrar_tabla_multiplicar():
+    try:
+        numero = int(input("Introduce un número entero entre 1 y 10 para mostrar su tabla de multiplicar: "))
+        if numero < 1 or numero > 10:
+            print("Número fuera del rango permitido.")
+            return
+
+        try:
+            with open(f"tabla-{numero}.txt", "r") as file:
+                print(file.read())
+        except FileNotFoundError:
+            print("El fichero no existe.")
+    except ValueError:
+        print("Debe ingresar un número entero válido.")
+
+
+# Ejercicio 8.3
+def mostrar_linea_tabla_multiplicar():
+    try:
+        n = int(input("Introduce un número entero entre 1 y 10 para seleccionar la tabla de multiplicar: "))
+        m = int(input("Introduce un número entero para seleccionar la línea de la tabla: "))
+        if n < 1 or n > 10 or m < 1 or m > 10:
+            print("Los números deben estar entre 1 y 10.")
+            return
+        
+        try:
+            with open(f"tabla-{n}.txt", "r") as file:
+                lines = file.readlines()
+                if len(lines) >= m:
+                    print(lines[m - 1])
+                else:
+                    print("La línea especificada no existe en el fichero.")
+        except FileNotFoundError:
+            print("El fichero no existe.")
+    except ValueError:
+        print("Debe ingresar números enteros válidos.")
+
+
+import csv
+import os
+
+
+# Ejercicio 8.4
+def consultar_PIB_per_capita():
+    url = "https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?file=data/sdg_08_10.tsv.gz&unzip=true"
+    filename = "sdg_08_10.tsv"
+    try:
+        # Descargar el archivo
+        import requests
+        import gzip
+
+        response = requests.get(url)
+        with open(filename, "wb") as f:
+            f.write(response.content)
+
+        # Leer el archivo tsv
+        pais = input("Introduce las iniciales del país en mayúsculas (por ejemplo, 'ES' para España): ")
+        with gzip.open(filename, "rt") as f:
+            reader = csv.DictReader(f, delimiter="\t")
+            for row in reader:
+                if row["geo\\time"] == pais:
+                    print(f"PIB per cápita de {row['geo\\time']}:")
+                    for year in range(2000, 2021):
+                        if row[str(year)] != ":":
+                            print(f"Año {year}: {row[str(year)]} euros")
+                    break
+            else:
+                print("No se encontraron datos para el país especificado.")
+    except Exception as e:
+        print("Ocurrió un error al consultar el PIB per cápita:", e)
+    finally:
+        # Eliminar el archivo descargado
+        if os.path.exists(filename):
+            os.remove(filename)
+
+
+# Ejercicio 8.5
+def crear_listin():
+    if not os.path.exists("listin.txt"):
+        with open("listin.txt", "w") as file:
+            file.write("")
+
+
+def consultar_telefono(nombre):
+    with open("listin.txt", "r") as file:
+        for line in file:
+            parts = line.strip().split(",")
+            if parts[0] == nombre:
+                return parts[1]
+    return None
+
+
+def agregar_telefono(nombre, telefono):
+    with open("listin.txt", "a") as file:
+        file.write(f"{nombre},{telefono}\n")
+
+
+def eliminar_telefono(nombre):
+    lines = []
+    with open("listin.txt", "r") as file:
+        for line in file:
+            parts = line.strip().split(",")
+            if parts[0] != nombre:
+                lines.append(line)
+    with open("listin.txt", "w") as file:
+        file.writelines(lines)
+
+
+# Ejercicio 8.6
+def registrar_usuario():
+    while True:
+        usuario = input("Introduce un nombre de usuario (mínimo 6 caracteres): ")
+        if len(usuario) < 6:
+            print("El nombre de usuario debe tener al menos 6 caracteres.")
+            continue
+        
+        contrasena = input("Introduce una contraseña (mínimo 8 caracteres, al menos una mayúscula y una minúscula): ")
+        if len(contrasena) < 8 or not any(char.isupper() for char in contrasena) or not any(char.islower() for char in contrasena):
+            print("La contraseña debe tener al menos 8 caracteres y contener al menos una mayúscula y una minúscula.")
+            continue
+        
+        with open("users.txt", "a") as file:
+            file.write(f"{usuario},{contrasena}\n")
+        
+        print("Usuario registrado exitosamente.")
+        break
+
+
+def login():
+    usuario = input("Introduce tu nombre de usuario: ")
+    contrasena = input("Introduce tu contraseña: ")
+    with open("users.txt", "r") as file:
+        for line in file:
+            user, password = line.strip().split(",")
+            if usuario == user and contrasena == password:
+                print("¡Estás dentro!")
+                return
+    print("Nombre de usuario o contraseña incorrectos.")
+
+separador(8.1)
+generar_tabla_multiplicar()
+separador(8.2)
+mostrar_tabla_multiplicar()
+separador(8.3)
+mostrar_linea_tabla_multiplicar()
+
+
+# Ejecución de las funciones
+
+separador(8.4)
+consultar_PIB_per_capita()
+
+separador(8.5)
+crear_listin()
+agregar_telefono("Juan", "123456789")
+print("Teléfono de Juan:", consultar_telefono("Juan"))
+eliminar_telefono("Juan")
+print("Teléfono de Juan después de eliminarlo:", consultar_telefono("Juan"))
+separador(8.6)
+registrar_usuario()
+login()
+
+

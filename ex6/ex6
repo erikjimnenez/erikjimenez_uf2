@@ -1,0 +1,137 @@
+print("Erik Jimnez Zarzoso")
+
+
+def separador(exercici):
+    print("#" * 25)
+    print("#")
+    print("# Exercici " + str(exercici))
+    print("#")
+    print("#" * 25)
+
+separador(6.1)
+
+
+c0 = int(input("Ingresa un número natural (mayor que 0): "))
+
+
+if c0 <= 0:
+    print("Por favor, ingresa un número natural mayor que 0.")
+else:
+    steps = 0
+
+    
+    while c0 != 1:
+        print(c0, end=" ")  #
+        if c0 % 2 == 0:
+            c0 //= 2
+        else:
+            c0 = 3 * c0 + 1
+        steps += 1
+
+    
+    print(c0)
+
+  
+    print(f"Se necesitaron {steps} pasos para llegar a 1.")
+
+separador(6.2)
+
+
+
+beatles = []
+
+
+beatles.append("John Lennon")
+beatles.append("Paul McCartney")
+beatles.append("George Harrison")
+
+
+for _ in range(2):
+    new_member = input("Ingrese un nuevo miembro de los Beatles: ")
+    beatles.append(new_member)
+
+del beatles[3:5]
+
+beatles.insert(0, "Ringo Starr")
+
+print("Lista final de los Beatles:", beatles)
+
+separador(6.3)
+
+def bubble_sort(input_list):
+    n = len(input_list)
+
+    for i in range(n - 1):
+        for j in range(0, n - i - 1):
+            if input_list[j] > input_list[j + 1]:
+                input_list[j], input_list[j + 1] = input_list[j + 1], input_list[j]
+
+user_list = []
+
+while True:
+    value = input("Ingresa un valor (escribe 'fin' para finalizar): ")
+    
+    if value.lower() == 'fin':
+        break 
+    else:
+        user_list.append(int(value))
+
+print("Lista ingresada por el usuario antes de ordenar:", user_list)
+
+bubble_sort(user_list)
+print("Lista ordenada:", user_list)
+
+separador(6.4)
+
+def eliminar_repeticiones(lista):
+    lista_sin_repeticiones = []
+    
+    for numero in lista:
+        if numero not in lista_sin_repeticiones:
+            lista_sin_repeticiones.append(numero)
+    
+    return lista_sin_repeticiones
+lista_original = [1, 2, 3, 2, 4, 5, 6, 4, 7, 8, 9, 1]
+lista_sin_repeticiones = eliminar_repeticiones(lista_original)
+print("Lista original:", lista_original)
+print("Lista sin repeticiones:", lista_sin_repeticiones)
+
+separador(6.5)
+
+def main():
+
+    numeros_ganadores_str = input("Ingresa los números ganadores separados por comas: ")
+    numeros_ganadores = [int(numero) for numero in numeros_ganadores_str.split(',')]  
+    numeros_ganadores.sort()
+    print("Números ganadores ordenados de menor a mayor:", numeros_ganadores)
+
+if __name__ == "__main__":
+    main()
+
+
+    
+separador(6.6)
+def main():
+    asignaturas = ["Matemáticas", "Física", "Química", "Historia", "Lengua"]
+    notas = {asignatura: float(input(f"Ingrese la nota de {asignatura}: ")) for asignatura in asignaturas}
+    asignaturas = [asignatura for asignatura, nota in notas.items() if nota < 5.0]
+    
+    print("\nDebes repetir las siguientes asignaturas:" if asignaturas else "\n¡Felicidades! Has aprobado todas las asignaturas.")
+    [print(asignatura) for asignatura in asignaturas]
+
+if __name__ == "__main__":
+    main()
+
+separador(6.7)
+paraula = input("Escriu una paraula")
+
+# "anna"
+# "qwerrewq"
+# "123456789"
+
+if paraula == paraula[::-1]:
+    print("Es polindrom")
+else:
+    print("No es polindrom")
+
+        
